@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<meta charset=utf-8 />
+<title>html5-vedio测试</title>
+<script src="../js/jquery.js"></script>
+
+<video id="video" width="400" controls="controls" preload="auto" poster="../images/load.jpg">
+<source src="../images/jazz.webm" type="video/webM" />
+<source src="../images/jazz.ogv" type="video/ogg" />
+<source src="../images/jazz.mp4" type="video/mp4" />
+您的浏览器不支持html5
+</video>
+
+<div class="controls">
+<a href="javascript:;" id="a1">播放</a>
+<a href="javascript:;" id="a2">暂停</a>
+<a href="javascript:;" id="a3">快进10秒</a>
+<a href="javascript:;" id="a4">快退10秒</a>
+<a href="javascript:;" id="a5">播放速度+</a>
+<a href="javascript:;" id="a6">播放速度-</a>
+<a href="javascript:;" id="a7">音量+</a>
+<a href="javascript:;" id="a8">音量-</a>
+<a href="javascript:;" id="a9">静音</a>
+<a href="javascript:;" id="a10">解除静音</a>
+<a href="javascript:;" id="a11">全屏</a>
+</div>
+<script>
+$(document).ready(function(){
+	$('.controls').find('a').each(function(index){
+		var obj = $(this);
+		obj.off('click').on('click',function(){
+			var tmp = $('#video').get(0);
+			switch (index)
+			{
+				case 0 : 
+					tmp.play();break;
+				case 1 : 
+					tmp.pause();break;
+				case 2 : 
+					tmp.currentTime += 10;break;
+				case 3 : 
+					tmp.currentTime -= 10;break;
+				case 4 : 
+					tmp.playbackRate += 2;break;
+				case 5 : 
+					tmp.playbackRate -= 2;break;
+				case 6 : 
+					tmp.volume += 0.1;break;
+				case 7 : 
+					tmp.volume -= 0.1;break;
+				case 8 : 
+					tmp.muted = true;break;
+				case 9 : 
+					tmp.muted = false;break;
+				case 10 : //全屏
+					tmp.webkitEnterFullScreen();
+					tmp.mozRequestFullScreen();
+					break;
+			}	
+		});
+	});
+});
+</script>
