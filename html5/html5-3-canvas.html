@@ -1,10 +1,47 @@
-<script src="../js/jquery.js"></script>
+﻿<script src="../js/jquery.js"></script>
 <canvas id="canvas" width="500" height="500" onmousemove="mousexy(event)">
+您的浏览器不支持html5-canvas
 </canvas>
 
 <div id="ads"></div>
 
 <script>
+var c = document.getElementById('canvas');
+var d2 = c.getContext("2d");
+//矩形
+d2.fillStyle = "#FF0000";//定义颜色
+d2.fillRect(0,0,300,300);//定义矩形的大小
+d2.fillStyle = "rgba(0,0,255,.5)";//定义颜色，支持透明
+d2.fillRect(200,200,500,500);//定义矩形的大小
+
+//直线
+d2.moveTo(50,50);//起始位置
+d2.lineTo(400,400);//结束位置
+d2.moveTo(450,350);//起始位置
+d2.lineTo(0,500);//结束位置
+d2.stroke();//结束图形
+
+//圆形
+d2.fillStyle = "#FF55FF";//定义演示颜色
+d2.beginPath();//从新开始画，防止冲突重叠
+d2.arc(250,250,50,0,Math.PI*2,false);//x坐标，y坐标，半径，开始，结束Math.PI圆周率，时针（是否顺时针）
+d2.closePath();//结束画布，防止冲突重叠
+d2.fill();//结束渲染
+
+//颜色渐变
+var grd = d2.createLinearGradient(400,400,500,500);//定义颜色渐变的起始坐标和结束坐标
+grd.addColorStop(0,"yellow");//0表示起始点，1表示起终点，配置颜色
+grd.addColorStop(0.5,"red");//0表示起始点，1表示起终点，配置颜色
+grd.addColorStop(1,"black");//0表示起始点，1表示起终点，配置颜色
+d2.fillStyle = grd;//生成的颜色块赋值给样式
+d2.fillRect(400,400,500,500);//设置色块
+
+//载入图片
+var img = new Image();
+img.src="../images/test.png";
+d2.drawImage(img,300,50);
+
+//监听鼠标
 function mousexy(n){
 	x = n.clientX;
 	y = n.clientY;
