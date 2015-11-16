@@ -1,0 +1,28 @@
+﻿<meta charset="utf-8" />
+<title>HTML5-form</title>
+<script src="../js/jquery.js"></script>
+
+<body>
+<form method="get" id="form">
+	<!--parttern正则表达式-->
+	<input type="text" required pattern="[789]+" />
+	
+	<input type="submit" value="提交" />
+</form>
+<input type="text" name="username" value="用户名" form="form" />
+<input type="email" name="email" form="form" required />
+<input type="search" list="mydata" autofocus required placeholder="请输入搜索关键字" results="n"  />
+
+
+<datalist id="mydata">
+	<option label="Top1" value="1111">1111</option>
+	<option label="Top2" value="2222">2222</option>
+	<option label="Top3" value="3333">3333</option>
+	<option label="Top4" value="4444">4444</option>
+	<option label="Top5" value="5555">5555</option>
+</datalist>
+
+</body>
+<script>
+
+</script>
