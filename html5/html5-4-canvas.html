@@ -1,1 +1,41 @@
-﻿
+﻿<meta charset="utf-8" />
+<title>HTML5-Canvas</title>
+<script src="../js/jquery.js"></script>
+
+<body>
+<canvas id="canvas" width="500" height="200" >
+您的浏览器暂不支持html5！
+</canvas>
+<div id="ds"></div>
+
+<script>
+var canvas = document.getElementById("canvas");
+var d2 = canvas.getContext("2d");
+var dir = 0;
+//var dir = 100;
+var width = 500;
+var height = 200;
+var exp = 1;	//像素移动方向，正数向下，负数向上
+
+function f1(){
+	//document.getElementById("ds").innerHTML += "123";
+	d2.clearRect(0,0,width,height);						//清除原始图形，
+											//起点坐标x坐标、y坐标
+											//终点坐标x坐标、y坐标
+	d2.fillStyle = "blue";				//定义颜色
+	d2.beginPath();						//重新开始画，防止冲突重叠
+	d2.arc(180,dir,dir,0,Math.PI*2,1);	//x坐标、y坐标、半径、Math.PI是圆周率
+	d2.closePath();						//结束画布，防止冲突重叠
+	d2.fill();							//结束渲染
+	
+	dir += exp;
+	
+	if(dir == 0 || dir == height){
+		exp *= -1;	//方向相反
+	}
+}
+</script>
+
+<button onclick="tt=setInterval(f1,20)">开始</button>
+<button onclick="clearInterval(tt)">停止</button>
+</body>
