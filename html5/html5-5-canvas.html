@@ -1,0 +1,39 @@
+﻿<meta charset="utf-8" />
+<title>HTML5-Canvas-画板</title>
+<script src="../js/jquery.js"></script>
+
+<body>
+<canvas id="canvas" width="500" height="400" style="border:1px solid #eee;">
+您的浏览器暂不支持html5！
+</canvas>
+</body>
+<script>
+var canvas = document.getElementById("canvas");
+var d2 = canvas.getContext("2d");
+	d2.lineWidth = 5;							//线条宽度
+	d2.strokeStyle = "red";		//线条颜色
+var begin = false;
+	
+$('#canvas').mousedown(function(e){
+	var mouseX = e.pageX - this.offsetLeft;
+	var mouseY = e.pageY - this.offsetTop;
+	
+	begin = true;
+	//直线
+	d2.moveTo(mouseX,mouseY);//起始位置
+	
+});
+
+$('#canvas').mouseup(function(e){
+	begin = false;
+});
+
+$('#canvas').mousemove(function(e){
+	var mouseX = e.pageX - this.offsetLeft;
+	var mouseY = e.pageY - this.offsetTop;
+	if(begin){
+		d2.lineTo(mouseX,mouseY);//结束位置
+		d2.stroke();//结束图形
+	}
+});
+</script>
