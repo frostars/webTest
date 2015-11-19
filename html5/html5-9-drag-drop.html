@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<head>
+	<meta charset="utf-8" />
+	<title>html5实现拖拽上传文件</title>
+	<script src="../js/jquery.js"></script>
+	<style>
+		#upload{width:500px;height:200px;border:1px solid #ccc;color:#000;overflow:hidden;}
+		#upload.hover{background-color:#ccc;}
+	</style>
+</head>
+<body>
+	<div id="upload">
+	</div>
+	<script>
+	$(document).ready(function(){
+		$(document).on({
+			dragleave : function(e){
+				e.preventDefault();
+				$('#upload').removeClass('hover');
+			},
+			drop : function(e){
+				e.preventDefault();
+			},
+			dragenter : function(e){
+				e.preventDefault();
+				$('#upload').addClass('hover');
+			},
+			dragover : function(e){
+				e.preventDefault();
+				$('#upload').addClass('hover');
+			}
+		});
+		
+		var box = document.getElementById('upload');//获取窗体
+		box.addEventListener('drop',function(e){
+			e.preventDefault();
+			var fileList = e.dataTransfer.files;
+			if(fileList.length){
+				$('#upload').removeClass('hover');
+			}
+			if(fileList[0].type.indexOf('image') === -1){
+				alert('您上传的不是图片');
+			} else{
+				alert('您上传的是图片');
+			}
+			//ajax
+			var xhr = new XMLHttpRequest();
+			xhr.open('post','upload.php',true);//true为异步传输
+			xhr.setRequestHeader('X-Requested-Width','XMLHttPRequest');
+			
+			var fd = new FormData();
+			fd.append('ff',fileList[0]);
+			
+			xhr.send(fd);
+		});
+	});
+	</script>
+</body>
+</html>
