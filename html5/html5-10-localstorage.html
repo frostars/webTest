@@ -1,0 +1,22 @@
+﻿<meta charset="utf-8" />
+<title>HTML5-localstorage本地存储</title>
+
+<body>
+<script>
+	if(window.localStorage){
+		//alert('支持');
+		localStorage.t1 = '第一个存储';
+		localStorage['t2'] = '第二个存储';
+		localStorage.setItem('t3','第三个存储');
+		
+		for(var i = 0;i < localStorage.length; i++){
+			document.write(localStorage.getItem(localStorage.key(i)) + '<br/>');
+		}
+		//document.write(localStorage.t1);
+		//document.write(localStorage.t2);
+		//document.write(localStorage.getItem(localStorage.key('2')) + '<br/>');
+	} else{
+		alert('不支持localStorage本地存储');
+	}
+</script>
+</body>
